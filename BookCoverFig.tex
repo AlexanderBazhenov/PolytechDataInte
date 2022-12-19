@@ -1,0 +1,124 @@
+\documentclass[a5paper,openany]{book}
+
+\usepackage{cmap}  
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc} 
+\usepackage{index} 
+\usepackage[russian]{babel} 
+\usepackage{amsmath,amssymb} 
+\usepackage{euscript,upref}  
+\usepackage{array,longtable}
+\usepackage{indentfirst} 
+\usepackage{graphicx} 
+%\usepackage{caption} 
+\usepackage[justification=centering]{caption}
+%\usepackage{calrsfs} 
+%\usepackage{url}
+\usepackage{multirow,makecell,array}
+%\usepackage{setspace} 
+%\usepackage{todonotes}
+%\usepackage{calligra}
+%\usepackage{makeidx}
+\usepackage{pgf,tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{etoolbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%           Определения новых команд и макросов
+%    
+%\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+%\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[1.8]callig15}{}
+\newcommand{\mbf}[1]{\protect\text{\boldmath$#1$}}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\mrm}{\mathrm}
+\newcommand{\mcl}{\mathcal}
+\newcommand{\msf}{\mathsf}
+\newcommand{\eus}{\EuScript}
+\newcommand{\ov}{\overline}
+\newcommand{\un}{\underline}
+\newcommand{\m}{\mathrm{mid}\;}
+\newcommand{\w}{\mathrm{wid}\;}
+\newcommand{\Uni}{\mathrm{Uni}\,}
+\newcommand{\Tol}{\mathrm{Tol}\,} 
+\newcommand{\Uss}{\mathrm{Uss}\,} 
+\newcommand{\Ab}{(\mbf{A}, \mbf{b})}
+\newcommand{\Arg}{\mathrm{Arg}\;} 
+\newcommand{\sgn}{\mathrm{sgn}\;} 
+\newcommand{\ran}{\mathrm{ran}\,} 
+\newcommand{\pro}{\mathrm{pro}\,} 
+\newcommand{\dom}{\mathrm{dom}\,} 
+\newcommand{\IVE}{\mathrm{IVE}\,} 
+\newcommand{\IED}{\mathrm{IED}\,} 
+\newcommand{\calX}{\mathrsfs{X}} 
+\newcommand{\cond}{\mathrm{cond}} 
+\newcommand{\mode}{\mathrm{mode}\,} 
+\newcommand{\dual}{\mathrm{dual}\,} 
+\newcommand{\dist}{\mathrm{dist}\,} 
+\newcommand{\Dist}{\mathrm{Dist}\,} 
+\newcommand{\const}{\mathrm{const}} 
+\newcommand{\USS}{\Xi_{\hspace{-0.5pt}uni}} 
+\newcommand{\TSS}{\Xi_{\hspace{-0.5pt}tol}} 
+\newcommand{\NExt}{_{\scalebox{0.57}{$\natural$}}}
+\newcommand{\ih}{\scalebox{0.67}[0.87]{$\Box$\hspace*{1pt}}}
+
+\renewcommand{\r}{\mathrm{rad}\;} 
+\renewcommand{\vert}{\mathrm{vert}\,} 
+\newcommand{\md}{\operatorname{med}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{example}[1]
+{%	\par %\vspace{\baselineskip}
+	\refstepcounter{Examp}	
+	%	{\noindent\textbf{Пример~\theExamp~(#1)} 
+		{\textbf{Пример~\theExamp.~#1} 					
+			\protect\addcontentsline{exp}{example}{\protect\numberline{\theExamp}\hspace{10pt}~#1}}
+		%{\protect\numberline{\listOfExamples}}	
+		%	{\noindent\ignorespaces}
+	}
+	%{\hfill$\blacksquare$\par\addvspace{3ex}}
+	%{\hfill\par\addvspace{3ex}}
+	%
+	
+	
+	%%% Создание списка собственной переменной окружения
+	\newcommand{\listOfExamples}{Список примеров}
+	%\newlistof{example}{exp}{\listOfExamples} 
+	\newcounter{Examp}
+	\setcounter{Examp}{0}
+	\renewcommand\theExamp{\thesection.\arabic{Examp}} %Эта команда - макрос для счетчика Examp, чтобы каждый раз не писать длинное выражение 
+	%Если нужна сквозная нумерация примеров:
+	%\renewcommand\theExamp{\arabic{Examp}}
+	
+	%\captionsetup[table]{labelformat=empty}
+	%\newcommand{\TABLENAME}{\raggedleft\small\textit{\tablename}\hspace{1mm}}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\input{PolyTech-Press.tex}
+	
+	
+\begin{document}
+
+ 
+\section*{Рисунок для обложки}
+
+\begin{figure}[htb]
+	\centering\small 
+	\unitlength=1mm 
+	\begin{picture}(70,60)
+				\put(0,0){\includegraphics[width=67mm]{WeakStrongCover.eps}}
+		%\put(0,0){\includegraphics[width=65mm, height=30mm]{WeakStrongCmp.png}}
+		\put(25, 45){ $\mbf{y} = \beta_0 + \beta_1 \cdot \mbf{x}$}	
+		\put(39,19){\mbox{\begin{tabular}{c}Слабосовместная\\[-1pt] зависимость\end{tabular}}} 
+		\put(18, 34){\mbox{\begin{tabular}{c}Сильносовместная\\[-1pt] зависимость\end{tabular}}} 
+		\put(1, 45){ $y$}
+		\put(65, 0){ $x$}
+	\end{picture} 
+%	\caption{Линейные зависимости с разными типами согласования с данными}
+%	\label{WeakStrongPic}  
+\end{figure}
+
+\end{document}

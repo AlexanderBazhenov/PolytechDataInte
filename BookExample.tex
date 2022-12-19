@@ -1,0 +1,519 @@
+\documentclass[a5paper,openany]{book}
+
+\usepackage{cmap}  
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc} 
+\usepackage{index} 
+\usepackage[russian]{babel} 
+\usepackage{amsmath,amssymb} 
+\usepackage{euscript,upref}  
+\usepackage{array,longtable}
+\usepackage{indentfirst} 
+\usepackage{graphicx} 
+%\usepackage{caption} 
+\usepackage[justification=centering]{caption}
+%\usepackage{calrsfs} 
+%\usepackage{url}
+\usepackage{multirow,makecell,array}
+%\usepackage{setspace} 
+%\usepackage{todonotes}
+%\usepackage{calligra}
+%\usepackage{makeidx}
+\usepackage{pgf,tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{etoolbox}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%           Определения новых команд и макросов
+%    
+%\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+%\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[1.8]callig15}{}
+\newcommand{\mbf}[1]{\protect\text{\boldmath$#1$}}
+\newcommand{\mbb}{\mathbb}
+\newcommand{\mrm}{\mathrm}
+\newcommand{\mcl}{\mathcal}
+\newcommand{\msf}{\mathsf}
+\newcommand{\eus}{\EuScript}
+\newcommand{\ov}{\overline}
+\newcommand{\un}{\underline}
+\newcommand{\m}{\mathrm{mid}\;}
+\newcommand{\w}{\mathrm{wid}\;}
+\newcommand{\Uni}{\mathrm{Uni}\,}
+\newcommand{\Tol}{\mathrm{Tol}\,} 
+\newcommand{\Uss}{\mathrm{Uss}\,} 
+\newcommand{\Ab}{(\mbf{A}, \mbf{b})}
+\newcommand{\Arg}{\mathrm{Arg}\;} 
+\newcommand{\sgn}{\mathrm{sgn}\;} 
+\newcommand{\ran}{\mathrm{ran}\,} 
+\newcommand{\pro}{\mathrm{pro}\,} 
+\newcommand{\dom}{\mathrm{dom}\,} 
+\newcommand{\IVE}{\mathrm{IVE}\,} 
+\newcommand{\IED}{\mathrm{IED}\,} 
+\newcommand{\calX}{\mathrsfs{X}} 
+\newcommand{\cond}{\mathrm{cond}} 
+\newcommand{\mode}{\mathrm{mode}\,} 
+\newcommand{\dual}{\mathrm{dual}\,} 
+\newcommand{\dist}{\mathrm{dist}\,} 
+\newcommand{\Dist}{\mathrm{Dist}\,} 
+\newcommand{\const}{\mathrm{const}} 
+\newcommand{\USS}{\Xi_{\hspace{-0.5pt}uni}} 
+\newcommand{\TSS}{\Xi_{\hspace{-0.5pt}tol}} 
+\newcommand{\NExt}{_{\scalebox{0.57}{$\natural$}}}
+\newcommand{\ih}{\scalebox{0.67}[0.87]{$\Box$\hspace*{1pt}}}
+
+\renewcommand{\r}{\mathrm{rad}\;} 
+\renewcommand{\vert}{\mathrm{vert}\,} 
+\newcommand{\md}{\operatorname{med}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{example}[1]
+{%	\par %\vspace{\baselineskip}
+	\refstepcounter{Examp}	
+	%	{\noindent\textbf{Пример~\theExamp~(#1)} 
+	{\textbf{Пример~\theExamp.~#1} 					
+		\protect\addcontentsline{exp}{example}{\protect\numberline{\theExamp}\hspace{10pt}~#1}}
+	%{\protect\numberline{\listOfExamples}}	
+	%	{\noindent\ignorespaces}
+}
+%{\hfill$\blacksquare$\par\addvspace{3ex}}
+%{\hfill\par\addvspace{3ex}}
+%
+
+
+%%% Создание списка собственной переменной окружения
+\newcommand{\listOfExamples}{Список примеров}
+%\newlistof{example}{exp}{\listOfExamples} 
+\newcounter{Examp}
+\setcounter{Examp}{0}
+\renewcommand\theExamp{\thesection.\arabic{Examp}} %Эта команда - макрос для счетчика Examp, чтобы каждый раз не писать длинное выражение 
+%Если нужна сквозная нумерация примеров:
+%\renewcommand\theExamp{\arabic{Examp}}
+
+%\captionsetup[table]{labelformat=empty}
+%\newcommand{\TABLENAME}{\raggedleft\small\textit{\tablename}\hspace{1mm}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{PolyTech-Press.tex}
+
+
+	\begin{document}
+		%\maketitle
+		
+%%%%
+				\newpage
+				\tableofcontents
+				
+				\newpage
+				
+				%\listofexample 
+				
+				%\cleardoublepage
+				%\newpage
+				
+				%\listoffigures
+				
+				%\newpage
+				
+%	\section*{ВВЕДЕНИЕ}	
+	\begin{center}
+		ВВЕДЕНИЕ
+	\end{center}
+%		\part*{ВВЕДЕНИЕ}				
+%	\addcontentsline{toc}{chapter}{Введение}   
+	\addcontentsline{toc}{part}{Введение}  
+					
+				Учебное пособие является дополнением к книге коллектива авторов
+				<<Обработка и анализ данных с интервальной неопределенностью>>.
+				
+				
+				Задача пособия --- дать обучащимся краткие сведения о теории и рассмотреть ряд примеров, иллюстрирующих интервальный подход. 
+
+
+\chapter[Обзор методов статистики и обработки данных]% 
+{\\Обзор методов \\ статистики и обработки данных} 
+
+	\section{Данные, погрешности и их обработка} 
+
+
+На практике данные не бывают точными. В действительности нам известно приближенное
+значение измеряемой величины, а также некоторая информация (качественная 
+и количественная) о погрешности этого значения.  \index{неопределенность} 
+На результаты измерений могут оказывать влияние изменчивость измеряемых величин, 
+их непостоянство во времени или пространстве. На измерения могут влиять внешние неконтролируемые факторы, так 
+называемые <<шумы>>. 
+
+Согласно <<Малой Советской Энциклопедии>> \cite{MalSovEncycl},  \emph{статистика} 
+--- это <<отрасль знаний, в которой излагаются общие вопросы сбора, измерения и 
+анализа массовых статистических (количественных или качественных) данных \ldots>>. 
+
+\subsection{Статистика нечетких данных} 
+\label{FuzzyStatSect} 
+
+
+Элементами арифметики $\mbb{KR}$ являются пары чисел, взятые в квадратные скобки,  \text{\textalpha}
+
+вида $[\text{\textalpha}, \beta]$, которые будем называть \textit{интервалами}. 
+При этом возможны ситуации, когда $\text{\textalpha}\leq\beta$ или $\text{\textalpha} > \beta$. Если 
+$\text{\textalpha}\leq \beta$, то $[\text{\textalpha}, \beta]$ обозначает обычный интервал вещественной оси, 
+его называют \textit{правильным}. Если же $\text{\textalpha} >  \beta$, то $[\text{\textalpha}, \beta]$ 
+--- \textit{неправильный интервал}. 
+
+
+\emph{Нечетким множеством} %(см. \cite{DuboisPrade,Zadeh}) 
+называется множество $X$, 
+образованное элементами произвольной природы, которое дополнено так называемой 
+\emph{функцией принадлежности} $\mu: X\to[0, 1]$, значение которой \textmu(x) на элементе 
+$x\in X$ показывает степень принадлежности $x$ множеству $X$. 
+У стандартной функции принадлежности множества (называемой также \emph{индикаторной функцией} 
+множества) значения могут быть равны только 0 или 1, поэтому допущение для функции $\text{\textmu}$ 
+непрерывного ряда значений из интервала $[0, 1]$ позволяет характеризовать ситуации, когда 
+нет уверенности в принадлежности элемента множеству, невозможно оперировать количественной мерой \index{нечеткое множество} \index{функция принадлежности} 
+уверенности и строить на этой основе  выводы и заключения.
+
+\begin{equation}
+	\label{MeasurDiffsAbs} 
+	\Delta_k = | \mathring{x}_k  - x_c |,  \quad  k = 1, \ \ldots, \ n.  
+\end{equation}  
+
+
+\chapter[Базовые понятия и математический аппарат]% 
+{\\Базовые понятия и \\* математический аппарат} 
+\label{PrimaryConceptChap} 
+
+
+Предметом этой главы книги является введение базовых понятий и математического 
+аппарата, относящихся к обработке интервальных данных.   
+
+	Графическое представление твина $\mbf{T}$  дано на рис. \ref{TwinsTemp}. 
+\begin{figure}[ht]
+	\centering\small 
+	\setlength{\unitlength}{1mm}
+	\begin{picture}(70,17)
+		\put(0,0){\includegraphics[width=70mm]{TwinTemp}}
+		\put(-5,6.6){\vector(1,0){80}} \put(71.5,7.6){$\mbb{R}$} 
+		\put(18,10){{\footnotesize 19,15}} 
+		\put(28,10){{\footnotesize 19,85}} 
+		\put(37,12){{\footnotesize 20,15}} 
+		\put(47,12){{\footnotesize 20,85}} 	
+		\put(35,1){$\mbf{T}$}  
+	\end{picture}
+	\caption{Температура как твин.} 
+	\label{TwinsTemp} 
+\end{figure}
+Форма записи температуры в виде твина $\mbf{T}$ четко
+и полно представляет информацию об измеряемых данных.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\section{Интервалы} 
+\label{IntervalSect} 
+
+
+\paragraph{Вещественные интервалы.} 
+Первичное понятие интервального анализа --- \emph{интервал}. Это просто описываемое 
+множество, задающее целый диапазон значений интересующей нас величины, с помощью 
+которого можно рассматривать неопределённости и неоднозначности. 
+
+
+\begin{equation*} 
+	\langle\mbf{a}\rangle\  = \;\min\,\{  |a| \mid a \in \mbf{a} \} \ 
+	= 		\left\{ 	
+	\begin{array}{cl}
+		\min\,\{  |\un{\mbf{a}}|, |\ov{\mbf{a}}|  \}, & \text{ если } 0\not\in\mbf{a},\\[2mm]  
+		0, & \text{ если } 0\in\mbf{a}. 
+	\end{array} 
+\right. 
+\end{equation*}
+
+\begin{equation*} 
+	\langle\mbf{a}\rangle\  = \;\min\,\{  |a| \mid a \in \mbf{a} \} \ = 	
+\begin{thincases}
+	\begin{array}{cl}
+	\min\,\{  |\un{\mbf{a}}|, |\ov{\mbf{a}}|  \}, & \text{ если } 0\not\in\mbf{a},\\[2mm]  
+	0, & \text{ если } 0\in\mbf{a}. 
+	\end{array}
+\end{thincases}
+\end{equation*}
+
+\begin{equation*} 
+	\pro\mbf{a} = 
+	\left\{ 
+	\begin{array}{cl}
+		\!	\mbf{a}, & \text{если $\mbf{a}$ --- правильный,} \\[1mm] 
+		\!	\dual\mbf{a}, & \text{если $\mbf{a}$ --- неправильный.} 
+	\end{array} 
+	\right. 
+\end{equation*} 
+
+\begin{equation*} 
+\pro\mbf{a} = 	
+	\begin{thincases}
+	\begin{array}{cl}
+		\!	\mbf{a}, & \text{если $\mbf{a}$ --- правильный,} \\[1mm] 
+		\!	\dual\mbf{a}, & \text{если $\mbf{a}$ --- неправильный.} 
+	\end{array} 
+	\end{thincases}
+\end{equation*}
+
+\chapter[Измерение постоянной величины]%
+{\\Измерение постоянной величины} 
+\label{MeasrConstChap}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+\section[Выборка измерений и интервалы их неопределённости]% 
+{Выборка измерений \\*  и интервалы их неопределённости} 
+\label{MeasSetInte}   
+
+Напомним, что \emph{постоянная величина} --- это величина, которая в рассматриваемом 
+процессе сохраняет свое значение неизменным. К примеру, рост человека не меняется 
+заметно в процессе его измерения, и потому может считаться постоянной величиной, 
+хотя на протяжении жизни человека рост, конечно же, непостоянен. 
+\index{постоянная величина} 
+
+Пусть имеется выборка измерений некоторой величины, 
+\begin{equation}
+	\label{ISample} 
+	\mbf{x}_{1}, \mbf{x}_{2}, \ldots, \mbf{x}_{n}, 
+\end{equation}                                 
+или, кратко, $\{\,\mbf{x}_{k}\}_{k=1}^n$, где $k$ --- номер измерения, $\mbf{x}_k$ 
+--- интервальный результат измерения, полученный, к примеру, какой-либо из процедур, 
+описанных в предыдущих параграфах. Таким образом, согласно терминологии интервального 
+анализа, рассматриваемая выборка --- это вектор интервалов, или интервальный вектор 
+$\mbf{x} = (\mbf{x}_{1}, \mbf{x}_{2}, \ldots, \mbf{x}_{n})$. Число $n$ --- размерность 
+вектора данных --- будем, как обычно, называть \emph{длиной выборки} (или объёмом 
+выборки).\index{длина выборки} По интервальным результатам измерений или наблюдений 
+требуется построить оценку для интересующей нас величины. 
+\index{задача измерения постоянной величины} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\chapter[Задача восстановления зависимостей]%
+{\\Задача восстановления зависимостей} 
+\label{FuncFitChap}
+
+
+В этой главе даются определения новых понятий и терминов, которые возникают в связи 
+с восстановлением функциональных зависимостей по данным их измерений и наблюдений, 
+имеющих интервальную неопределённость. Мы рассмотрим также основные идеи и типичные 
+приёмы восстановления зависимостей по интервальным данным, а также возникающие 
+при этом проблемы. 
+
+
+%\tablename~\thetable
+%\TABLENAME \ref{TableWidbeta}
+%\floatbox[\capbeside]{table}{\caption{\\Размеры множества параметров линейной модели данных}
+\begin{table}[h!]
+	\TABLENAME \ref{TableWidbeta}
+	\caption{\\ {\bfseries\small Размеры множества параметров линейной модели данных}}
+	\label{TableWidbeta}
+	\begin{center}
+		\begin{tabular}{ | c | c | c | }
+			\hline
+			{\small	$\epsilon$} & {\small$\w \mbf{\beta}_1$} & {\small $\w \mbf{\beta}_2$} \\
+			\hline
+			~~~~~~~~~~~100~~~~~~~~~~~~	 & ~~~~~~~~~~~~$\simeq$ 29~~~~~~~~~~~~ & ~~~~~~~~~~~~$ \simeq$ 4~~~~~~~~~~~~ \\
+			\hline				
+			150	 & $\simeq$ 250 & $\simeq$ 38\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\vspace{-4mm}
+\end{table}
+
+
+Более подробно исследуется случай простейшей линейной зависимости, 
+но большинство построений и рассуждений легко переносятся на общий нелинейный случай. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\section{Постановка задачи} 
+
+Предположим, что величина $y$ является функцией некоторого заданного вида от 
+независимых переменных $x_1$, $x_2$, \ldots, $x_m$, т.\,е. 
+\begin{equation}
+	\label{ParamFunc} 
+	y = f(x, \beta), 
+\end{equation}
+где $x = (x_{1}, \ldots, x_{m})$ --- вектор независимых переменных, $\beta = (\beta_1, 
+\ldots, \beta_l)$ --- вектор параметров функции. Имея набор значений переменных $x$ 
+и $y$, нам нужно найти $\beta_1, \ldots, \beta_l$, которые соответствуют конкретной 
+функции $f$ из параметрического семейства \eqref{ParamFunc}. Эту задачу мы будем 
+называть \emph{задачей восстановления зависимости}, и она будет основным предметом 
+рассмотрения в этой главе.                \index{задача восстановления зависимости} 
+
+
+посредством решения задачи условной оптимизации. Найти
+\begin{equation} 
+	\label{MinSumW_Subj} 
+	%\text{Найти} \quad 
+	\min_{w,\, \beta}\;\Sigma_{i \, = \, 1}^n w_{i} 
+\end{equation}
+при ограничениях
+\begin{equation} 
+	\label{MinSumW_Constr} 
+	\left\{  
+	\begin{gathered}
+		\mathring{y}_i - w_i \, \epsilon_i \leq f(x_i,\beta) 
+		\leq \mathring{y}_i + w_i \, \epsilon_i,    \\[2pt]   
+		w_i \geq 1, 
+	\end{gathered}
+	\qquad 
+	i = 1, \ \ \ldots, \ n. 
+	\right. 
+\end{equation}
+
+\begin{equation*} 
+	\begin{thincases}
+	\begin{gathered}
+	\mathring{y}_i - w_i \, \epsilon_i \leq f(x_i,\beta) 
+	\leq \mathring{y}_i + w_i \, \epsilon_i,    \\[2pt]   
+	w_i \geq 1, 
+\end{gathered}
+\qquad 
+i = 1, \ \ \ldots, \ n. 
+	\end{thincases}
+\end{equation*}
+
+
+
+\begin{equation} 
+	\label{MinSumW_Subj_Nonsym} 
+	%\text{Найти} \quad 
+	\min_{w^{-},\,w^{+},\,\beta}\;\Sigma_{i=1}^n (w_i^{-} + w_i^{+}) 
+\end{equation}
+при ограничениях
+\begin{equation} 
+%	\label{MinSumW_Constr_Nonsym} 
+	\left\{ \ 
+	\begin{gathered}
+		\mathring{y}_i - w_i^{-} \, \epsilon^{-}_i \leq f(x_i,\beta) \leq 
+		\mathring{y}_i + w_i^{+} \, \epsilon^{+}_i, \\[2pt] 
+		w_i^{-} \geq 1, \\[2pt]  
+		w_i^{+} \geq 1, 
+	\end{gathered}
+	\qquad i = 1,\dots,n. 
+	\right. 
+\end{equation}
+
+\begin{equation} 
+\label{MinSumW_Constr_Nonsym} 
+\begin{thincases}
+	\begin{gathered}
+		\mathring{y}_i - w_i^{-} \, \epsilon^{-}_i \leq f(x_i,\beta) \leq 
+		\mathring{y}_i + w_i^{+} \, \epsilon^{+}_i, \\[2pt] 
+		w_i^{-} \geq 1, \\[2pt]  
+		w_i^{+} \geq 1, 
+	\end{gathered}
+\qquad i = 1,\dots,n. 
+\end{thincases}
+\end{equation}
+
+
+В интервальной системе линейных алгебраических уравнений 
+\begin{equation*} 
+	\arraycolsep=2pt 
+\begin{thincases}
+	\begin{array}{ccccccccccc}
+		\beta_0 &+& x_{11}\beta_1 &+& 
+		x_{12} \beta_2 &+& \ldots &+& x_{1m}\beta_m &=& \mbf{y}_{1}, \\[3pt] 
+		\beta_0 &+& x_{21}\beta_1 &+& 
+		x_{22} \beta_2 &+& \ldots &+& x_{2m}\beta_m &=& \mbf{y}_{2}, \\[3pt] 
+		\vdots &&  \vdots && \vdots && \ddots && \vdots && \vdots                  \\[3pt]  
+		\beta_0 &+& x_{n1}\beta_1 &+& 
+		x_{n2} \beta_2 &+& \ldots &+& x_{nm}\beta_m &=& \mbf{y}_{n}, 
+	\end{array} 
+\end{thincases}
+\end{equation*} 
+интервальность присутствует только в правой части. С другой стороны, 
+система \eqref{LinIneqs} равносильна системе \eqref{LinIneqSys} 
+\begin{equation} 
+	\label{LinIneqSys} 
+	\arraycolsep=2pt 
+\begin{thincases}
+	\begin{array}{ccccc}
+		\un{\mbf{y}}_{1} & \leq & \beta_0 + \beta_1 x_{11} + 
+		\beta_2 x_{12} + \ldots + \beta_m x_{1m} & \leq & \ov{\mbf{y}}_{1}, \\[3pt] 
+		\un{\mbf{y}}_{2} & \leq & \beta_0 + \beta_1 x_{21} + 
+		\beta_2 x_{22} + \ldots + \beta_m x_{2m} & \leq & \ov{\mbf{y}}_{2}, \\[3pt] 
+		\vdots & \vdots &   \ddots & \vdots & \vdots \\[3pt] 
+		\un{\mbf{y}}_{n} & \leq & \beta_0 + \beta_1 x_{n1} + 
+		\beta_2 x_{n2} + \ldots + \beta_m x_{nm} & \leq & \ov{\mbf{y}}_{n}. 
+	\end{array} 
+\end{thincases}
+\end{equation} 
+Это система двусторонних линейных неравенств 
+
+
+\newpage
+%\renewcommand{\bibname}{\centering \normalsize БИБЛИОГРАФИЧЕСКИЙ СПИСОК}  
+%\renewcommand{\bibname}{\centering \small БИБЛИОГРАФИЧЕСКИЙ СПИСОК} 
+
+% for the report or book class 
+%\addcontentsline{toc}{chapter}{Библиографический список}   
+\addcontentsline{toc}{part}{Библиографический список}   
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+\patchcmd{\thebibliography}{\section*{\refname}}{\centering  БИБЛИОГРАФИЧЕСКИЙ СПИСОК}{}{}
+	
+
+
+%\addto\captionsrussian{\def\refname{\centering \small БИБЛИОГРАФИЧЕСКИЙ СПИСОК}}
+\input{BiblioBookExample.txt}
+%\addcontentsline{toc}{part}{Предметный указатель}
+\raggedright\small\printindex   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1 стр пустая- № 1
+%\blankpage
+
+\newpage
+\begin{center}
+	\hfill \break
+	
+	\Large{\it Баженов Александр Николаевич\\
+		\hfill \break		\hfill \break		}
+	{\Large	\bf{ВВЕДЕНИЕ В АНАЛИЗ ДАННЫХ\\
+			С ИНТЕРВАЛЬНОЙ НЕОПРЕДЕЛЕННОСТЬЮ}}\\
+	\hfill \break 	\hfill \break	
+	\Large{	Учебное пособие	
+	}\\
+\end{center}
+
+\hfill \break	
+
+\begin{center}
+	Редактор \emph{Л.\,В.\,Ларионова} \\
+	%	Корректор \emph{Н.\,Б.\,Цветкова} \\
+	Оригинал-макет подготовлен автором\\
+	Дизайн обложки \emph{Е.\,В.\,Гладышевой}\\
+	\hfill \break	
+	Санитарно-эпидемиологическое заключение\\
+	№ 78.01.07.953.П.001342.01.07 от 24.01.2007 г. \\
+	\hfill \break	
+	Налоговая льгота --- Общероссийский классификатор продукции \\
+	ОК 005-93, т. 2; 95 3005 --- учебная литература\\
+%	\hfill \break	
+	$\ov{~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}$\\
+%	\hfill \break	
+	Подписано в печать 08.12.2022. Формат 60$\times$84/16. Печать цифровая. \\
+	Усл. печ. л. 6,0. Тираж 50 экз. Заказ ~~~~ \\
+%	\hfill \break
+	$\ov{~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~}$\\ 
+%	\hfill \break
+	Отпечатано в Издательско-полиграфическом центре \\
+	Политехнического университета. \\
+	195251, Санкт-Петербург, Политехническая ул., 29. \\
+	Тел.: (812) 552-77-17; 550-4014.
+	
+\end{center}
+
+
+\thispagestyle{empty} % выключаем отображение номера для этой страницы
+
+\end{document}
+

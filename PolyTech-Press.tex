@@ -1,0 +1,194 @@
+
+%%%%%%%%%%%%%%%%%%%%% GREEK TEXT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{textgreek}
+\renewcommand{\mu}{\text{\textmu}} 
+\renewcommand{\delta}{\text{\textdelta}} 
+\renewcommand{\Delta}{\text{\textDelta}} 
+\renewcommand{\alpha}{\text{\textalpha}} 
+\renewcommand{\beta}{\text{\textbeta}} 
+\renewcommand{\epsilon}{\text{\textepsilon}}
+\renewcommand{\rho}{\text{\textrho}}
+\renewcommand{\gamma}{\text{\textgamma}}
+%%%%%%%%%%%%%%%%%%%%% GREEK TEXT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\usepackage{imakeidx}
+\makeindex [title=ПРЕДМЕТНЫЙ УКАЗАТЕЛЬ]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% https://latex.org/forum/viewtopic.php?f=5&t=2521#p9922
+\usepackage[compact]{titlesec} 
+\titleformat{\chapter}{%
+	%	\centering\normalfont\Large\bfseries}{\thechapter}{1em}{}
+\centering\normalfont\Large\bfseries}{ {\large  {\tt Г~л~а~в~а~ \thechapter}} }{1em}{}
+\titlespacing*{\chapter} {0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+%  \titleformat{\section}{%
+%	\centering\normalfont\Large\bfseries}{\thesection}{1em}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CHAPTER %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titleformat{\section}
+{\centering\Large\bfseries}{\thesection.}{1em}{}
+\titleformat{\subsection}
+{\centering\large\bfseries\itshape}{\thesubsection.}{1em}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTION  Adds . in TOC %%%%%%%%%%%%%%
+\usepackage{secdot}% Adds . after sectional unit numbers
+\usepackage{etoolbox}
+% \patchcmd{<cmd>}{<search>}{<replace>}{<success>}{<failure>}
+\patchcmd{\numberline}{\hfil}{.\hfil}{}{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SECTION  Adds . in TOC %%%%%%%%%%%%%%	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PAGE SIZE %%%%%%%%%%%%%%	
+\textwidth=114truemm
+\textheight=165truemm
+\oddsidemargin=-1cm
+\evensidemargin=\oddsidemargin
+%\topmargin=-1cm
+\topmargin=-2cm
+\sloppy
+
+\pagestyle{plain}
+%\mathsurround=1pt
+%\tolerance=400
+%\hfuzz=2pt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PAGE SIZE %%%%%%%%%%%%%%	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PAGE NUMBERS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr}
+\fancyhf{} % clear all header and footers
+\renewcommand{\headrulewidth}{0pt} % remove the header rule
+\fancyfoot[LE,RO]{\thepage} % Left side on Even pages; Right side on Odd pages
+\pagestyle{fancy}
+\fancypagestyle{plain}{%
+\fancyhf{}%
+\renewcommand{\headrulewidth}{0pt}%
+\fancyhf[lef,rof]{\thepage}%
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PAGE NUMBERS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{enumerate} % Тонкая настройка списков
+\usepackage{indentfirst} % Красная строка после заголовка
+\usepackage{float} % Расширенное управление плавающими объектами
+
+
+%%%%%%%%%%%%%%%%%%%%%%% ОГЛАВЛЕНИЕ %%%%%%%%%%%%%%%%%%%%%%%
+%\renewcommand{\contentsname}{ОГЛАВЛЕНИЕ}
+
+\usepackage{tocloft} % Alter the style of the Table of Contents
+% 2022-12-08
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+%\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+% Содержание
+% ОГЛАВЛЕНИЕ
+%\renewcommand{\cfttoctitlefont}{\normalfont\MakeUppercase}
+%\renewcommand{\cfttoctitlefont}{\hspace*{\fill}\normalfont\MakeUppercase}
+\renewcommand{\cfttoctitlefont}{\hspace{4cm}\normalfont\bfseries\MakeUppercase}
+%\renewcommand{\cfttoctitlefont}{\centering\normalfont\bfseries\MakeUppercase}
+%\renewcommand{\cftaftertoctitle}{\hfill}
+% СОДЕРЖАНИЕ
+%\renewcommand{\cftsecfont}{\hspace{0pt}}            % Имена секций в содержании не жирным шрифтом
+\renewcommand\cftsecleader{\cftdotfill{\cftdotsep}} % Точки для секций в содержании
+\renewcommand\cftsecpagefont{\mdseries}             % Номера страниц не жирные
+\setcounter{tocdepth}{3}                            % Глубина оглавления, до subsubsection
+\renewcommand{\cftsecaftersnum}{.}					% Точки после номера секций в содержании
+\renewcommand{\cftsubsecaftersnum}{.}				% Точки после номера подсекций в содержании
+%
+
+%\addto\captionsenglish{\renewcommand{\chaptername}{Lecture}}
+\addto\captionsrussian{\renewcommand{\chaptername}{Г~л~а~в~а}}
+%\renewcommand{\chaptername}{Раздел}
+\renewcommand{\cftchappagefont}{\normalfont}
+%\renewcommand{\cftchapfont}{\normalfont\large\itshape}    % \chapter font in ToC
+%\renewcommand{\cftchapfont}{\bfseries\large}    % \chapter font in ToC
+\renewcommand{\cftchapfont}{\bfseries}    % \chapter font in ToC
+
+\setlength{\cftchapnumwidth}{0pt}
+%\renewcommand{\cftchappresnum}{\MakeUppercase\chaptername\ }
+\renewcommand{\cftchappresnum}{\normalfont\chaptername\ }
+\renewcommand{\cftchapaftersnum}{.}						% Точка после номера главы в содержании
+%\renewcommand{\cftchapaftersnumb}{\newline}
+\renewcommand{\cftchapaftersnumb}{~~~~~~~~~~~~~}
+\renewcommand{\cftchapdotsep}{\cftdotsep}
+\renewcommand\cftchapleader{\cftdotfill{\cftdotsep}}	% Точки после имени главы в содержании
+%%%%%%%%%%%%%%%%%%%%%%%  PART %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% для нестандартного оформления оглавления
+\renewcommand{\cftpartpagefont}{\normalfont}   		 % номер страницы
+\renewcommand{\cftpartfont}{\normalfont} 			 % шрифт раздела
+\renewcommand\cftpartleader{\cftdotfill{\cftdotsep}} % Точки 
+%%%%%%%%%%%%%%%%%%%%%%%  PART %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%% ОГЛАВЛЕНИЕ %%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Списки %%%%%%%%%%%%%%	
+\usepackage{enumitem}
+\setlist[enumerate,itemize]{leftmargin=0pt,itemindent=2.5em} % Отступы в списках
+\makeatletter
+\AddEnumerateCounter{\asbuk}{\@asbuk}{м)}
+\makeatother
+\setlist{nolistsep}
+\renewcommand{\labelitemi}{--}
+\renewcommand{\labelenumi}{\asbuk{enumi})}
+\renewcommand{\labelenumii}{\arabic{enumii})}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Списки %%%%%%%%%%%%%%	
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAPTIONS TABLES FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\captionsetup{font=small,labelsep=period,margin=7mm} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAPTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\captionsetup[figure]{
+	font = small,
+	labelfont = it
+}
+\captionsetup[table]{
+	font = small,
+	labelfont = it
+}	
+%\usepackage{lipsum, mwe}
+\setlength\abovecaptionskip{0pt plus 0pt minus 4pt}
+\setlength\belowcaptionskip{0pt plus 0pt minus 4pt}	
+
+\captionsetup[table]{labelformat=empty}
+\newcommand{\TABLENAME}{\raggedleft\small\textit{\tablename}\hspace{1mm}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CAPTIONS TABLES FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% thebibliography %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+
+%%%%%%%%%%%%%%%% Библиография: отступы и межстрочный интервал %%%%%%%%%%%%%%%% 
+\makeatletter
+\renewenvironment{thebibliography}[1]
+{\section*{\refname}
+\list{\@biblabel{\@arabic\c@enumiv}}
+{\settowidth\labelwidth{\@biblabel{#1}}
+	\leftmargin\labelsep
+	\itemindent 10mm %16.7mm
+	\@openbib@code
+	\usecounter{enumiv}
+	\let\p@enumiv\@empty
+	\renewcommand\theenumiv{\@arabic\c@enumiv}
+}
+\setlength{\itemsep}{0pt}
+}
+\makeatother
+%%%%%%%%%%%%%%%% Библиография: отступы и межстрочный интервал %%%%%%%%%%%%%%%% 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% СКОБКИ СВЕТЛЫЕ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{graphicx}
+\usepackage{environ}
+\NewEnviron{thincases}{\scalebox{0.5}[1]{$\displaystyle
+	\left\{\scalebox{2}[1]{\setlength{\arraycolsep}{3pt}% <- I did not look up the "correct" value О	
+		$\displaystyle\begin{array}{ll}
+			\BODY
+		\end{array}$}\right.$}}%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% СКОБКИ  СВЕТЛЫЕ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
